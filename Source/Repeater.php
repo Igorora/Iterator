@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,32 +34,43 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\Repeater.
+ * Class \igorora\Iterator\Repeater.
  *
  * Repeat an iterator n-times.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class Repeater implements Iterator
 {
     /**
      * Current iterator.
+     *
+     * @var Iterator
      */
     protected $_iterator = null;
 
     /**
      * Maximum repetition.
+     *
+     * @var int
      */
     protected $_n        = 1;
 
     /**
      * Current repetition.
+     *
+     * @var int
      */
     protected $_i        = 1;
 
     /**
      * Body (callable to execute each time).
+     *
+     * @var callable
      */
     protected $_body     = null;
 
@@ -69,8 +78,13 @@ class Repeater implements Iterator
 
     /**
      * Constructor.
+     *
+     * @param   \Traversable  $iterator    Iterator.
+     * @param   int           $n           Repeat $n-times.
+     * @param   callable      $body        Body.
+     * @throws  \igorora\Iterator\Exception
      */
-    public function __construct(iterable $iterator, int $n, callable $body = null)
+    public function __construct(\Traversable $iterator, $n, $body = null)
     {
         if (0 >= $n) {
             throw new Exception(
@@ -93,6 +107,8 @@ class Repeater implements Iterator
 
     /**
      * Return the current element.
+     *
+     * @return  mixed
      */
     public function current()
     {
@@ -101,6 +117,8 @@ class Repeater implements Iterator
 
     /**
      * Return the key of the current element.
+     *
+     * @return  mixed
      */
     public function key()
     {
@@ -109,24 +127,30 @@ class Repeater implements Iterator
 
     /**
      * Move forward to next element.
+     *
+     * @return  void
      */
-    public function next(): void
+    public function next() : void
     {
-        $this->_iterator->next();
+        return $this->_iterator->next();
     }
 
     /**
      * Rewind the iterator to the first element.
+     *
+     * @return  void
      */
-    public function rewind(): void
+    public function rewind() : void
     {
-        $this->_iterator->rewind();
+        return $this->_iterator->rewind();
     }
 
     /**
      * Check if current position is valid.
+     *
+     * @return  bool
      */
-    public function valid(): bool
+    public function valid() : bool
     {
         $valid = $this->_iterator->valid();
 

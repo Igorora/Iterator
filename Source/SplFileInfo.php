@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,22 +34,29 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\SplFileInfo.
+ * Class \igorora\Iterator\SplFileInfo.
  *
  * Enhance SplFileInfo implementation.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class SplFileInfo extends \SplFileInfo
 {
     /**
      * Hash.
+     *
+     * @var string
      */
     protected $_hash         = null;
 
     /**
      * Relative path.
+     *
+     * @var string
      */
     protected $_relativePath = null;
 
@@ -59,8 +64,11 @@ class SplFileInfo extends \SplFileInfo
 
     /**
      * Construct.
+     *
+     * @param   string  $filename        Filename.
+     * @param   string  $relativePath    Relative path.
      */
-    public function __construct(string $filename, string $relativePath = null)
+    public function __construct($filename, $relativePath = null)
     {
         parent::__construct($filename);
 
@@ -75,16 +83,20 @@ class SplFileInfo extends \SplFileInfo
 
     /**
      * Get the hash.
+     *
+     * @return  string
      */
-    public function getHash(): string
+    public function getHash()
     {
         return $this->_hash;
     }
 
     /**
      * Get the MTime.
+     *
+     * @return  int
      */
-    public function getMTime(): int
+    public function getMTime() : int
     {
         try {
             return parent::getMTime();
@@ -95,8 +107,11 @@ class SplFileInfo extends \SplFileInfo
 
     /**
      * Set relative path.
+     *
+     * @param   string  $relativePath    Relative path.
+     * @return  string
      */
-    public function setRelativePath(string $relativePath): ?string
+    public function setRelativePath($relativePath)
     {
         $old                 = $this->_relativePath;
         $this->_relativePath = $relativePath;
@@ -106,16 +121,20 @@ class SplFileInfo extends \SplFileInfo
 
     /**
      * Get relative path (if given).
+     *
+     * @return  string
      */
-    public function getRelativePath(): ?string
+    public function getRelativePath()
     {
         return $this->_relativePath;
     }
 
     /**
      * Get relative pathname (if possible).
+     *
+     * @return  string
      */
-    public function getRelativePathname(): string
+    public function getRelativePathname()
     {
         if (null === $relative = $this->getRelativePath()) {
             return $this->getPathname();

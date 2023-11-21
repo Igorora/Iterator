@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,37 +34,50 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\Counter.
+ * Class \igorora\Iterator\Counter.
  *
  * A counter.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class Counter implements Iterator
 {
     /**
      * From (lower bound).
+     *
+     * @var int
      */
     protected $_from = 0;
 
     /**
      * Current key.
+     *
+     * @var int
      */
     protected $_key  = 0;
 
     /**
      * Current index.
+     *
+     * @var int
      */
     protected $_i    = 0;
 
     /**
      * To (upper bound).
+     *
+     * @var int
      */
     protected $_to   = 0;
 
     /**
      * Step.
+     *
+     * @var int
      */
     protected $_step = 0;
 
@@ -76,8 +87,13 @@ class Counter implements Iterator
      * Constructor.
      * Equivalent to:
      *     for($i = $from; $i < $to; $i += $step)
+     *
+     * @param   int  $from    Start value.
+     * @param   int  $to      Maximum value.
+     * @param   int  $step    Step.
+     * @throws  \igorora\Iterator\Exception
      */
-    public function __construct(int $from, int $to, int $step)
+    public function __construct($from, $to, $step)
     {
         if ($step <= 0) {
             throw new Exception(
@@ -96,42 +112,56 @@ class Counter implements Iterator
 
     /**
      * Return the current element.
+     *
+     * @return  int
      */
-    public function current(): int
+    public function current()
     {
         return $this->_i;
     }
 
     /**
      * Return the key of the current element.
+     *
+     * @return  int
      */
-    public function key(): int
+    public function key()
     {
         return $this->_key;
     }
 
     /**
      * Move forward to next element.
+     *
+     * @return  void
      */
-    public function next(): void
+    public function next() : void
     {
         ++$this->_key;
         $this->_i += $this->_step;
+
+        return;
     }
 
     /**
      * Rewind the iterator to the first element.
+     *
+     * @return  void
      */
-    public function rewind(): void
+    public function rewind() : void
     {
         $this->_key = 0;
         $this->_i   = $this->_from;
+
+        return;
     }
 
     /**
      * Check if current position is valid.
+     *
+     * @return  bool
      */
-    public function valid(): bool
+    public function valid() : bool
     {
         return $this->_i < $this->_to;
     }

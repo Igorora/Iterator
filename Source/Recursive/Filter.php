@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,12 +34,15 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator\Recursive;
+namespace igorora\Iterator\Recursive;
 
 /**
- * Class \Hoa\Iterator\Recursive\Filter.
+ * Class \igorora\Iterator\Recursive\Filter.
  *
  * Extending the SPL RecursiveFilterIterator class.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 abstract class Filter extends \RecursiveFilterIterator
 {

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,22 +34,29 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\Directory.
+ * Class \igorora\Iterator\Directory.
  *
  * Extending the SPL DirectoryIterator class.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class Directory extends \DirectoryIterator
 {
     /**
      * SplFileInfo classname.
+     *
+     * @var string
      */
     protected $_splFileInfoClass = null;
 
     /**
      * Relative path.
+     *
+     * @var string
      */
     protected $_relativePath     = null;
 
@@ -61,8 +66,11 @@ class Directory extends \DirectoryIterator
      * Constructor.
      * Please, see \DirectoryIterator::__construct() method.
      * We add the $splFileInfoClass parameter.
+     *
+     * @param   string  $path                Path.
+     * @param   string  $splFileInfoClass    SplFileInfo classname.
      */
-    public function __construct(string $path, string $splFileInfoClass = null)
+    public function __construct($path, $splFileInfoClass = null)
     {
         $this->_splFileInfoClass = $splFileInfoClass;
         parent::__construct($path);
@@ -74,6 +82,8 @@ class Directory extends \DirectoryIterator
     /**
      * Current.
      * Please, see \DirectoryIterator::current() method.
+     *
+     * @return  mixed
      */
     public function current()
     {
@@ -84,7 +94,7 @@ class Directory extends \DirectoryIterator
             $out->setInfoClass($this->_splFileInfoClass);
             $out = $out->getFileInfo();
 
-            if ($out instanceof SplFileInfo) {
+            if ($out instanceof \igorora\Iterator\SplFileInfo) {
                 $out->setRelativePath($this->getRelativePath());
             }
         }
@@ -94,8 +104,11 @@ class Directory extends \DirectoryIterator
 
     /**
      * Set relative path.
+     *
+     * @param   string  $relativePath    Relative path.
+     * @return  string
      */
-    protected function setRelativePath($path): ?string
+    protected function setRelativePath($path)
     {
         $old                 = $this->_relativePath;
         $this->_relativePath = $path;
@@ -105,8 +118,10 @@ class Directory extends \DirectoryIterator
 
     /**
      * Get relative path (if given).
+     *
+     * @return  string
      */
-    public function getRelativePath(): string
+    public function getRelativePath()
     {
         return $this->_relativePath;
     }

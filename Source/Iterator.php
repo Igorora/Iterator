@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,14 +34,17 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
-use Hoa\Consistency;
+use igorora\consistency\Consistency;
 
 /**
- * Interface \Hoa\Iterator.
+ * Interface \igorora\Iterator.
  *
  * Extending the SPL Iterator interface.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 interface Iterator extends \Iterator
 {
@@ -52,4 +53,4 @@ interface Iterator extends \Iterator
 /**
  * Flex entity.
  */
-Consistency::flexEntity(Iterator::class);
+Consistency::flexEntity('igorora\Iterator\Iterator');

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,17 +34,22 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\Multiple.
+ * Class \igorora\Iterator\Multiple.
  *
  * Extending the SPL MultipleIterator class.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class Multiple extends \MultipleIterator
 {
     /**
      * Default value for each $infos.
+     *
+     * @var array
      */
     protected $_infos = [];
 
@@ -56,12 +59,17 @@ class Multiple extends \MultipleIterator
      * Attach iterator informations.
      * Add the $default argument that will be use when the iterator has reached
      * its end.
+     *
+     * @param   \Iterator  $iterator    Iterator.
+     * @param   string     $infos       Informations to attach.
+     * @param   mixed      $default     Default value.
+     * @return  void
      */
     public function attachIterator(
-        \Iterator $iterator,
-        $infos   = null,
-        $default = null
-    ) {
+            \Iterator $iterator,
+            $infos   = null,
+            $default = null
+        ) : void {
         $out = parent::attachIterator($iterator, $infos);
 
         if (null === $infos) {
@@ -75,8 +83,10 @@ class Multiple extends \MultipleIterator
 
     /**
      * Get the registered iterator instances.
+     *
+     * @return  array
      */
-    public function current(): array
+    public function current() : array
     {
         $out = parent::current();
 

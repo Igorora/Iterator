@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,14 +34,17 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator\Recursive;
+namespace igorora\Iterator\Recursive;
 
-use Hoa\Consistency;
+use igorora\Consistency\Consistency;
 
 /**
- * Class \Hoa\Iterator\Recursive.
+ * Class \igorora\Iterator\Recursive.
  *
  * Extending the SPL RecursiveIterator interface.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 interface Recursive extends \RecursiveIterator
 {
@@ -52,4 +53,4 @@ interface Recursive extends \RecursiveIterator
 /**
  * Flex entity.
  */
-Consistency::flexEntity(Recursive::class);
+Consistency::flexEntity('igorora\Iterator\Recursive\Recursive');

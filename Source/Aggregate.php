@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,12 +34,15 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Interface \Hoa\Iterator\Aggregate.
+ * Interface \igorora\Iterator\Aggregate.
  *
  * Extending the SPL IteratorAggregate interface.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 interface Aggregate extends \IteratorAggregate
 {

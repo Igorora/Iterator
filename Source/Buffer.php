@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,37 +34,50 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\Buffer.
+ * Class \igorora\Iterator\Buffer.
  *
  * Buffer iterator: Can go backward up to a certain limit, and forward.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class Buffer extends IteratorIterator implements Outer
 {
     /**
      * Buffer key index.
+     *
+     * @const int
      */
-    protected const BUFFER_KEY   = 0;
+    const BUFFER_KEY   = 0;
 
     /**
      * Buffer value index.
+     *
+     * @const int
      */
-    protected const BUFFER_VALUE = 1;
+    const BUFFER_VALUE = 1;
 
     /**
      * Current iterator.
+     *
+     * @var \Iterator
      */
     protected $_iterator   = null;
 
     /**
      * Buffer.
+     *
+     * @var \SplDoublyLinkedList
      */
     protected $_buffer     = null;
 
     /**
      * Maximum buffer size.
+     *
+     * @var int
      */
     protected $_bufferSize = 1;
 
@@ -74,8 +85,11 @@ class Buffer extends IteratorIterator implements Outer
 
     /**
      * Construct.
+     *
+     * @param   \Iterator  $iterator      Iterator.
+     * @param   int        $bufferSize    Buffer size.
      */
-    public function __construct(iterable $iterator, int $bufferSize)
+    public function __construct(\Iterator $iterator, $bufferSize)
     {
         $this->_iterator   = $iterator;
         $this->_bufferSize = max($bufferSize, 1);
@@ -86,48 +100,60 @@ class Buffer extends IteratorIterator implements Outer
 
     /**
      * Get inner iterator.
+     *
+     * @return  \Iterator
      */
-    public function getInnerIterator(): iterable
+    public function getInnerIterator() : ?\Generator
     {
         return $this->_iterator;
     }
 
     /**
      * Get buffer.
+     *
+     * @return  \SplDoublyLinkedList
      */
-    protected function getBuffer(): \SplDoublyLinkedList
+    protected function getBuffer()
     {
         return $this->_buffer;
     }
 
     /**
      * Get buffer size.
+     *
+     * @return  int
      */
-    public function getBufferSize(): int
+    public function getBufferSize()
     {
         return $this->_bufferSize;
     }
 
     /**
      * Return the current element.
+     *
+     * @return  mixed
      */
-    public function current()
+    public function current() : mixed
     {
         return $this->getBuffer()->current()[self::BUFFER_VALUE];
     }
 
     /**
      * Return the key of the current element.
+     *
+     * @return  mixed
      */
-    public function key()
+    public function key() : mixed
     {
         return $this->getBuffer()->current()[self::BUFFER_KEY];
     }
 
     /**
      * Move forward to next element.
+     *
+     * @return  void
      */
-    public function next(): void
+    public function next() : void
     {
         $innerIterator = $this->getInnerIterator();
         $buffer        = $this->getBuffer();
@@ -157,20 +183,28 @@ class Buffer extends IteratorIterator implements Outer
             $buffer->rewind();
             $buffer->setIteratorMode($buffer::IT_MODE_FIFO | $buffer::IT_MODE_KEEP);
         }
+
+        return;
     }
 
     /**
      * Move backward to previous element.
+     *
+     * @return  void
      */
-    public function previous(): void
+    public function previous() : void
     {
         $this->getBuffer()->prev();
+
+        return;
     }
 
     /**
      * Rewind the iterator to the first element.
+     *
+     * @return  void
      */
-    public function rewind(): void
+    public function rewind() :void
     {
         $innerIterator = $this->getInnerIterator();
         $buffer        = $this->getBuffer();
@@ -191,8 +225,10 @@ class Buffer extends IteratorIterator implements Outer
 
     /**
      * Check if current position is valid.
+     *
+     * @return  bool
      */
-    public function valid(): bool
+    public function valid() :bool
     {
         return
             $this->getBuffer()->valid() &&

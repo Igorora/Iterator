@@ -36,13 +36,13 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator\Test\Unit;
+namespace igorora\Iterator\Test\Unit;
 
-use Hoa\Iterator as LUT;
-use Hoa\Test;
+use igorora\Iterator as LUT;
+use igorora\Test;
 
 /**
- * Class \Hoa\Iterator\Test\Unit\Append.
+ * Class \igorora\Iterator\Test\Unit\Append.
  *
  * Test suite of the repeater iterator.
  *

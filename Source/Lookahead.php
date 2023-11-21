@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,32 +34,43 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\Lookahead.
+ * Class \igorora\Iterator\Lookahead.
  *
  * Look ahead iterator.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class Lookahead extends IteratorIterator implements Outer
 {
     /**
      * Current iterator.
+     *
+     * @var \Iterator
      */
     protected $_iterator = null;
 
     /**
      * Current key.
+     *
+     * @var mixed
      */
     protected $_key      = 0;
 
     /**
      * Current value.
+     *
+     * @var mixed
      */
     protected $_current  = null;
 
     /**
      * Whether the current element is valid or not.
+     *
+     * @var bool
      */
     protected $_valid    = false;
 
@@ -69,8 +78,10 @@ class Lookahead extends IteratorIterator implements Outer
 
     /**
      * Construct.
+     *
+     * @param   \Iterator  $iterator    Iterator.
      */
-    public function __construct(iterable $iterator)
+    public function __construct(\Iterator $iterator)
     {
         $this->_iterator = $iterator;
 
@@ -79,32 +90,40 @@ class Lookahead extends IteratorIterator implements Outer
 
     /**
      * Get inner iterator.
+     *
+     * @return  \Generator
      */
-    public function getInnerIterator(): iterable
+    public function getInnerIterator() : ?\Generator
     {
         return $this->_iterator;
     }
 
     /**
      * Return the current element.
+     *
+     * @return  mixed
      */
-    public function current()
+    public function current() : mixed
     {
         return $this->_current;
     }
 
     /**
      * Return the key of the current element.
+     *
+     * @return  mixed
      */
-    public function key()
+    public function key() : mixed
     {
         return $this->_key;
     }
 
     /**
      * Move forward to next element.
+     *
+     * @return  void
      */
-    public function next(): void
+    public function next() : void
     {
         $innerIterator = $this->getInnerIterator();
         $this->_valid  = $innerIterator->valid();
@@ -117,45 +136,59 @@ class Lookahead extends IteratorIterator implements Outer
         $this->_current = $innerIterator->current();
 
         $innerIterator->next();
+
+        return;
     }
 
     /**
      * Rewind the iterator to the first element.
+     *
+     * @return  void
      */
-    public function rewind(): void
+    public function rewind() : void
     {
-        $this->getInnerIterator()->rewind();
+        $out = $this->getInnerIterator()->rewind();
         $this->next();
+
+        return; // $out;
     }
 
     /**
      * Check if current position is valid.
+     *
+     * @return  bool
      */
-    public function valid(): bool
+    public function valid() : bool
     {
         return $this->_valid;
     }
 
     /**
      * Check whether there is a next element.
+     *
+     * @return  bool
      */
-    public function hasNext(): bool
+    public function hasNext() : bool
     {
         return $this->getInnerIterator()->valid();
     }
 
     /**
      * Get next value.
+     *
+     * @return  mixed
      */
-    public function getNext()
+    public function getNext() : mixed
     {
         return $this->getInnerIterator()->current();
     }
 
     /**
      * Get next key.
+     *
+     * @return  mixed
      */
-    public function getNextKey()
+    public function getNextKey() : mixed
     {
         return $this->getInnerIterator()->key();
     }

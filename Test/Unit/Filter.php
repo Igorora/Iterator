@@ -36,13 +36,13 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator\Test\Unit;
+namespace igorora\Iterator\Test\Unit;
 
-use Hoa\Iterator as LUT;
-use Hoa\Test;
+use igorora\Iterator as LUT;
+use igorora\Test;
 
 /**
- * Class \Hoa\Iterator\Test\Unit\MyFilter.
+ * Class \igorora\Iterator\Test\Unit\MyFilter.
  *
  * Basic filter.
  *
@@ -57,7 +57,7 @@ class MyFilter extends LUT\Filter
 }
 
 /**
- * Class \Hoa\Iterator\Test\Unit\Filter.
+ * Class \igorora\Iterator\Test\Unit\Filter.
  *
  * Test suite of the filter iterator.
  *
@@ -70,7 +70,7 @@ class Filter extends Test\Unit\Suite
         $this
             ->given(
                 $foobar = $this->getDummyIterator(),
-                $filter = new \Mock\Hoa\Iterator\Test\Unit\MyFilter($foobar),
+                $filter = new \Mock\igorora\Iterator\Test\Unit\MyFilter($foobar),
                 $this->calling($filter)->accept = function () {
                     $value = $this->current();
 
@@ -92,7 +92,7 @@ class Filter extends Test\Unit\Suite
         $this
             ->given(
                 $foobar = $this->getDummyIterator(),
-                $filter = new \Mock\Hoa\Iterator\Test\Unit\MyFilter($foobar),
+                $filter = new \Mock\igorora\Iterator\Test\Unit\MyFilter($foobar),
                 $this->calling($filter)->accept = false
             )
             ->when($result = iterator_to_array($filter))

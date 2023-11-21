@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,17 +34,22 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\FileSystem.
+ * Class \igorora\Iterator\FileSystem.
  *
  * Extending the SPL FileSystemIterator class.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class FileSystem extends \FilesystemIterator
 {
     /**
      * SplFileInfo classname.
+     *
+     * @var string
      */
     protected $_splFileInfoClass = null;
 
@@ -56,8 +59,12 @@ class FileSystem extends \FilesystemIterator
      * Constructor.
      * Please, see \FileSystemIterator::__construct() method.
      * We add the $splFileInfoClass parameter.
+     *
+     * @param   string  $path                Path.
+     * @param   int     $flags               Flags.
+     * @param   string  $splFileInfoClass    SplFileInfo classname.
      */
-    public function __construct(string $path, int $flags = null, string $splFileInfoClass = null)
+    public function __construct($path, $flags = null, $splFileInfoClass = null)
     {
         $this->_splFileInfoClass = $splFileInfoClass;
 
@@ -73,8 +80,10 @@ class FileSystem extends \FilesystemIterator
     /**
      * Current.
      * Please, see \FileSystemIterator::current() method.
+     *
+     * @return  string|\SplFileInfo|\FilesystemIterator
      */
-    public function current()
+    public function current() : string|\SplFileInfo|\FilesystemIterator
     {
         $out = parent::current();
 

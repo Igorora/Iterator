@@ -36,13 +36,13 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator\Test\Unit;
+namespace igorora\Iterator\Test\Unit;
 
-use Hoa\Iterator as LUT;
-use Hoa\Test;
+use igorora\Iterator as LUT;
+use igorora\Test;
 
 /**
- * Class \Hoa\Iterator\Test\Unit\SplFileInfo.
+ * Class \igorora\Iterator\Test\Unit\SplFileInfo.
  *
  * Test suite of the SplFileInfo class.
  *
@@ -53,7 +53,7 @@ class SplFileInfo extends Test\Unit\Suite
     public function case_file(): void
     {
         $this
-            ->given($pathname = 'hoa://Test/Vfs/Foo.bar?type=file')
+            ->given($pathname = 'igorora://Test/Vfs/Foo.bar?type=file')
             ->when($result = new LUT\SplFileInfo($pathname))
             ->then
                 ->boolean($result->isFile())
@@ -65,7 +65,7 @@ class SplFileInfo extends Test\Unit\Suite
     public function case_directory(): void
     {
         $this
-            ->given($pathname = 'hoa://Test/Vfs/Foo?type=directory')
+            ->given($pathname = 'igorora://Test/Vfs/Foo?type=directory')
             ->when($result = new LUT\SplFileInfo($pathname))
             ->then
                 ->boolean($result->isDir())
@@ -78,7 +78,7 @@ class SplFileInfo extends Test\Unit\Suite
     {
         $this
             ->given(
-                $relativePath     = 'hoa://Test/Vfs/A/B/',
+                $relativePath     = 'igorora://Test/Vfs/A/B/',
                 $relativePathname = 'C/Foo.bar',
                 $pathname         = $relativePath . $relativePathname
             )
@@ -95,7 +95,7 @@ class SplFileInfo extends Test\Unit\Suite
                 ->string($result->getRelativePathname())
                     ->isEqualTo($relativePathname . '?type=file')
                 ->string($result->getPath())
-                    ->isEqualTo('hoa://Test/Vfs/A/B/C')
+                    ->isEqualTo('igorora://Test/Vfs/A/B/C')
                 ->string($result->getPathname())
                     ->isEqualTo($pathname . '?type=file');
     }
@@ -112,7 +112,7 @@ class SplFileInfo extends Test\Unit\Suite
                 $ctime    = $this->sample($timestamp),
                 $mtime    = $this->sample($timestamp),
                 $pathname =
-                    'hoa://Test/Vfs/Foo.bar?' .
+                    'igorora://Test/Vfs/Foo.bar?' .
                     http_build_query([
                         'type'  => 'file',
                         'atime' => $atime,
@@ -133,7 +133,7 @@ class SplFileInfo extends Test\Unit\Suite
     public function case_permissions(): void
     {
         $this
-            ->given($pathname = 'hoa://Test/Vfs/Fo.bar?type=file&permissions=0744')
+            ->given($pathname = 'igorora://Test/Vfs/Fo.bar?type=file&permissions=0744')
             ->when($result = new LUT\SplFileInfo($pathname))
             ->then
                 ->boolean($result->isReadable())
@@ -143,7 +143,7 @@ class SplFileInfo extends Test\Unit\Suite
                 ->boolean($result->isExecutable())
                     ->isTrue()
 
-            ->given($pathname = 'hoa://Test/Vfs/Foo.bar?type=file&permissions=0644')
+            ->given($pathname = 'igorora://Test/Vfs/Foo.bar?type=file&permissions=0644')
             ->when($result = new LUT\SplFileInfo($pathname))
             ->then
                 ->boolean($result->isReadable())
@@ -153,7 +153,7 @@ class SplFileInfo extends Test\Unit\Suite
                 ->boolean($result->isExecutable())
                     ->isFalse()
 
-            ->given($pathname = 'hoa://Test/Vfs/Fooo.bar?type=file&permissions=0444')
+            ->given($pathname = 'igorora://Test/Vfs/Fooo.bar?type=file&permissions=0444')
             ->when($result = new LUT\SplFileInfo($pathname))
             ->then
                 ->boolean($result->isReadable())
@@ -163,7 +163,7 @@ class SplFileInfo extends Test\Unit\Suite
                 ->boolean($result->isExecutable())
                     ->isFalse()
 
-            ->given($pathname = 'hoa://Test/Vfs/Foooo.bar?type=file&permissions=0044')
+            ->given($pathname = 'igorora://Test/Vfs/Foooo.bar?type=file&permissions=0044')
             ->when($result = new LUT\SplFileInfo($pathname))
             ->then
                 ->boolean($result->isReadable())

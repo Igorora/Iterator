@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,28 +34,37 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\Demultiplexer.
+ * Class \igorora\Iterator\Demultiplexer.
  *
  * Demux result from another iterator.
- * This iterator is somehow the opposite of the Hoa\Iterator\Multiple iterator.
+ * This iterator is somehow the opposite of the igorora\Iterator\Multiple iterator.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class Demultiplexer implements Iterator
 {
     /**
      * Current iterator.
+     *
+     * @var Iterator
      */
     protected $_iterator = null;
 
     /**
      * Current computed value.
+     *
+     * @var mixed
      */
     protected $_current  = null;
 
     /**
      * Demuxer (callable to execute each time).
+     *
+     * @var callable
      */
     protected $_demuxer  = null;
 
@@ -65,8 +72,12 @@ class Demultiplexer implements Iterator
 
     /**
      * Constructor.
+     *
+     * @param   \Traversable  $iterator    Iterator.
+     * @param   callable      $demuxer     Demuxer.
+     * @throws  \igorora\Iterator\Exception
      */
-    public function __construct(iterable $iterator, callable $demuxer)
+    public function __construct(\Traversable $iterator, $demuxer)
     {
         if ($iterator instanceof \IteratorAggregate) {
             $iterator = $iterator->getIterator();
@@ -80,6 +91,8 @@ class Demultiplexer implements Iterator
 
     /**
      * Return the current element.
+     *
+     * @return  mixed
      */
     public function current()
     {
@@ -94,6 +107,8 @@ class Demultiplexer implements Iterator
 
     /**
      * Return the key of the current element.
+     *
+     * @return  mixed
      */
     public function key()
     {
@@ -102,25 +117,32 @@ class Demultiplexer implements Iterator
 
     /**
      * Move forward to next element.
+     *
+     * @return  void
      */
-    public function next(): void
+    public function next() : void
     {
         $this->_current = null;
-        $this->_iterator->next();
+
+        return $this->_iterator->next();
     }
 
     /**
      * Rewind the iterator to the first element.
+     *
+     * @return  void
      */
-    public function rewind(): void
+    public function rewind() : void
     {
-        $this->_iterator->rewind();
+        return $this->_iterator->rewind();
     }
 
     /**
      * Check if current position is valid.
+     *
+     * @return  bool
      */
-    public function valid(): bool
+    public function valid() : bool
     {
         return $this->_iterator->valid();
     }

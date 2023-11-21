@@ -36,14 +36,14 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator\Test\Unit;
+namespace igorora\Iterator\Test\Unit;
 
-use Hoa\Iterator as LUT;
-use Hoa\Protocol;
-use Hoa\Test;
+use igorora\Iterator as LUT;
+use igorora\Protocol;
+use igorora\Test;
 
 /**
- * Class \Hoa\Iterator\Test\Unit\FileSystem.
+ * Class \igorora\Iterator\Test\Unit\FileSystem.
  *
  * Test suite of the filesystem iterator.
  *
@@ -55,11 +55,11 @@ class FileSystem extends Test\Unit\Suite
     {
         $this
             ->given(
-                $root = $this->resolve('hoa://Test/Vfs/Root?type=directory'),
-                $this->resolve('hoa://Test/Vfs/Root/.?type=directory'),
-                $this->resolve('hoa://Test/Vfs/Root/..?type=directory'),
-                $this->resolve('hoa://Test/Vfs/Root/A?type=file'),
-                $this->resolve('hoa://Test/Vfs/Root/B?type=file'),
+                $root = $this->resolve('igorora://Test/Vfs/Root?type=directory'),
+                $this->resolve('igorora://Test/Vfs/Root/.?type=directory'),
+                $this->resolve('igorora://Test/Vfs/Root/..?type=directory'),
+                $this->resolve('igorora://Test/Vfs/Root/A?type=file'),
+                $this->resolve('igorora://Test/Vfs/Root/B?type=file'),
                 $iterator = new LUT\FileSystem($root),
                 $result   = []
             )
@@ -83,14 +83,14 @@ class FileSystem extends Test\Unit\Suite
     {
         $this
             ->given(
-                $splFileInfo = 'Hoa\Iterator\SplFileInfo',
-                $root        = $this->resolve('hoa://Test/Vfs/Root?type=directory'),
-                $this->resolve('hoa://Test/Vfs/Root/a?type=file'),
-                $this->resolve('hoa://Test/Vfs/Root/b?type=file'),
-                $this->resolve('hoa://Test/Vfs/Root/c?type=file'),
-                $this->resolve('hoa://Test/Vfs/Root/d?type=file'),
-                $this->resolve('hoa://Test/Vfs/Root/e?type=file'),
-                $this->resolve('hoa://Test/Vfs/Root/f?type=file'),
+                $splFileInfo = 'igorora\Iterator\SplFileInfo',
+                $root        = $this->resolve('igorora://Test/Vfs/Root?type=directory'),
+                $this->resolve('igorora://Test/Vfs/Root/a?type=file'),
+                $this->resolve('igorora://Test/Vfs/Root/b?type=file'),
+                $this->resolve('igorora://Test/Vfs/Root/c?type=file'),
+                $this->resolve('igorora://Test/Vfs/Root/d?type=file'),
+                $this->resolve('igorora://Test/Vfs/Root/e?type=file'),
+                $this->resolve('igorora://Test/Vfs/Root/f?type=file'),
                 $iterator = new LUT\FileSystem(
                     $root,
                     LUT\FileSystem::CURRENT_AS_FILEINFO,

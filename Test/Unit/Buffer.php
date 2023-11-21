@@ -36,14 +36,14 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator\Test\Unit;
+namespace igorora\Iterator\Test\Unit;
 
-use Hoa\Iterator as LUT;
-use Hoa\Iterator\Buffer as SUT;
-use Hoa\Test;
+use igorora\Iterator as LUT;
+use igorora\Iterator\Buffer as SUT;
+use igorora\Test;
 
 /**
- * Class \Hoa\Iterator\Test\Unit\Buffer.
+ * Class \igorora\Iterator\Test\Unit\Buffer.
  *
  * Test suite of the buffer iterator.
  *

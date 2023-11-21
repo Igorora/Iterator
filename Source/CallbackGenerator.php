@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,27 +34,36 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator;
+namespace igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\CallbackGenerator.
+ * Class \igorora\Iterator\CallbackGenerator.
  *
  * Yield a value based on a callback.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class CallbackGenerator implements Iterator
 {
     /**
      * Callback.
+     *
+     * @var callable
      */
     protected $_callback = null;
 
     /**
      * Current key.
+     *
+     * @var mixed
      */
     protected $_key      = 0;
 
     /**
      * Current computed value.
+     *
+     * @var mixed
      */
     protected $_current  = null;
 
@@ -64,6 +71,8 @@ class CallbackGenerator implements Iterator
 
     /**
      * Constructor.
+     *
+     * @param   callable  $callback    Callback.
      */
     public function __construct(callable $callback)
     {
@@ -74,6 +83,8 @@ class CallbackGenerator implements Iterator
 
     /**
      * Return the current element.
+     *
+     * @return  mixed
      */
     public function current()
     {
@@ -84,6 +95,8 @@ class CallbackGenerator implements Iterator
 
     /**
      * Return the key of the current element.
+     *
+     * @return  mixed
      */
     public function key()
     {
@@ -92,25 +105,35 @@ class CallbackGenerator implements Iterator
 
     /**
      * Move forward to next element.
+     *
+     * @return  void
      */
-    public function next(): void
+    public function next() :void
     {
         ++$this->_key;
+
+        return;
     }
 
     /**
      * Rewind the iterator to the first element.
+     *
+     * @return  void
      */
-    public function rewind(): void
+    public function rewind() : void
     {
         $this->_key     = 0;
         $this->_current = null;
+
+        return;
     }
 
     /**
      * Check if current position is valid.
+     *
+     * @return  bool
      */
-    public function valid(): bool
+    public function valid() : bool
     {
         return true;
     }

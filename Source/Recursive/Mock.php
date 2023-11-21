@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,18 +34,23 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator\Recursive;
+namespace igorora\Iterator\Recursive;
 
 /**
- * Class \Hoa\Iterator\Recursive\Mock.
+ * Class \igorora\Iterator\Recursive\Mock.
  *
  * Mock a recursive iterator with no children.
  * It allows to use regular iterators with a recursive iterator iterator.
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class Mock implements Recursive
 {
     /**
      * Current iterator.
+     *
+     * @var \Iterator
      */
     protected $_iterator = null;
 
@@ -55,8 +58,10 @@ class Mock implements Recursive
 
     /**
      * Constructor.
+     *
+     * @param   \Traversable  $iterator    Iterator.
      */
-    public function __construct(iterable $iterator)
+    public function __construct(\Traversable $iterator)
     {
         if ($iterator instanceof \IteratorAggregate) {
             $iterator = $iterator->getIterator();
@@ -69,6 +74,8 @@ class Mock implements Recursive
 
     /**
      * Return the current element.
+     *
+     * @return  mixed
      */
     public function current()
     {
@@ -77,6 +84,8 @@ class Mock implements Recursive
 
     /**
      * Return the key of the current element.
+     *
+     * @return  mixed
      */
     public function key()
     {
@@ -85,18 +94,22 @@ class Mock implements Recursive
 
     /**
      * Move forward to next element.
+     *
+     * @return  void
      */
-    public function next(): void
+    public function next() : void
     {
-        $this->_iterator->next();
+        return $this->_iterator->next();
     }
 
     /**
      * Rewind the iterator to the first element.
+     *
+     * @return  void
      */
-    public function rewind(): void
+    public function rewind() : void
     {
-        $this->_iterator->rewind();
+        return $this->_iterator->rewind();
     }
 
     /**
@@ -104,7 +117,7 @@ class Mock implements Recursive
      *
      * @return  bool
      */
-    public function valid(): bool
+    public function valid() : bool
     {
         return $this->_iterator->valid();
     }
@@ -112,8 +125,10 @@ class Mock implements Recursive
     /**
      * Return an iterator for the current entry.
      * It's a fake, we return null.
+     *
+     * @return  null|\RecursiveIterator
      */
-    public function getChildren()
+    public function getChildren() : ?\RecursiveIterator
     {
         return null;
     }
@@ -121,8 +136,10 @@ class Mock implements Recursive
     /**
      * Return if an iterator can be created for the current entry.
      * It's a fake, we return false.
+     *
+     * @return  bool
      */
-    public function hasChildren(): bool
+    public function hasChildren() : bool
     {
         return false;
     }

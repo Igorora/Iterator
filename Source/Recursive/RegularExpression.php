@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Hoa
  *
@@ -36,30 +34,45 @@ declare(strict_types=1);
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Hoa\Iterator\Recursive;
+namespace igorora\Iterator\Recursive;
 
-use Hoa\Iterator;
+use igorora\Iterator;
 
 /**
- * Class \Hoa\Iterator\Recursive\RegularExpression.
+ * Class \igorora\Iterator\Recursive\RegularExpression.
  *
  * Re-implement the SPL RecursiveRegexIterator class.
  * There are too many bugs in php-src and HHVM, so we re-implement it from
  * scratch without extending the existing class.
  *
  * Inspired by hhvm://hphp/system/php/spl/iterators/RecursiveRegexIterator.php
+ *
+ * @copyright  Copyright © 2007-2017 Hoa community
+ * @license    New BSD License
  */
 class RegularExpression extends Iterator\RegularExpression implements Recursive
 {
     /**
      * Constructor.
+     *
+     * @param   \RecursiveIterator  $iterator     The recursive iterator to
+     *                                            apply this regex filter to.
+     * @param   string              $regex        The regular expression to
+     *                                            match.
+     * @param   int                 $mode         Operation mode, please see the
+     *                                            \RegexIterator::setMode method.
+     * @param   int                 $flags        Special flags, please see the
+     *                                            \RegexIterator::setFlags method.
+     * @param   int                 $pregFlags    Regular expression flags,
+     *                                            please see
+     *                                            \RegexIterator constants.
      */
     public function __construct(
         \RecursiveIterator $iterator,
-        string $regex,
-        int $mode      = self::MATCH,
-        int $flags     = 0,
-        int $pregFlags = 0
+        $regex,
+        $mode      = self::MATCH,
+        $flags     = 0,
+        $pregFlags = 0
     ) {
         parent::__construct($iterator, $regex, $mode, $flags, $pregFlags);
 
@@ -68,8 +81,10 @@ class RegularExpression extends Iterator\RegularExpression implements Recursive
 
     /**
      * Get accept status.
+     *
+     * @return  bool
      */
-    public function accept(): bool
+    public function accept() : bool
     {
         return
             true === $this->hasChildren() ||
@@ -78,8 +93,10 @@ class RegularExpression extends Iterator\RegularExpression implements Recursive
 
     /**
      * Get an iterator for the current entry.
+     *
+     * @return  \igorora\Iterator\Recursive\RegularExpression
      */
-    public function getChildren(): self
+    public function getChildren() : RegularExpression 
     {
         return new static(
             true === $this->hasChildren()
@@ -94,8 +111,10 @@ class RegularExpression extends Iterator\RegularExpression implements Recursive
 
     /**
      * Check whether an iterator can be obtained for the current entry.
+     *
+     * @return  bool
      */
-    public function hasChildren(): bool
+    public function hasChildren() : bool
     {
         return $this->getInnerIterator()->hasChildren();
     }
